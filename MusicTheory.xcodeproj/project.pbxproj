@@ -14,6 +14,8 @@
 		124A377C1ACD372A00CF6821 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A377B1ACD372A00CF6821 /* Note.swift */; };
 		124A377E1ACD380500CF6821 /* NoteWithIntervals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A377D1ACD380500CF6821 /* NoteWithIntervals.swift */; };
 		124A37801ACD3BCA00CF6821 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 124A377F1ACD3BCA00CF6821 /* LICENSE */; };
+		1292A4B11C033EBA002142CB /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1292A4AF1C033EBA002142CB /* Chord.swift */; };
+		1292A4B21C033EBA002142CB /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1292A4B01C033EBA002142CB /* Key.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,8 @@
 		124A377B1ACD372A00CF6821 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		124A377D1ACD380500CF6821 /* NoteWithIntervals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteWithIntervals.swift; sourceTree = "<group>"; };
 		124A377F1ACD3BCA00CF6821 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1292A4AF1C033EBA002142CB /* Chord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
+		1292A4B01C033EBA002142CB /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				124A37621ACD363000CF6821 /* MusicTheory.h */,
+				1292A4AF1C033EBA002142CB /* Chord.swift */,
+				1292A4B01C033EBA002142CB /* Key.swift */,
 				124A37791ACD36CA00CF6821 /* Music.swift */,
 				124A377B1ACD372A00CF6821 /* Note.swift */,
 				124A377D1ACD380500CF6821 /* NoteWithIntervals.swift */,
@@ -170,7 +176,8 @@
 		124A37541ACD363000CF6821 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Daniel Breves";
 				TargetAttributes = {
 					124A375C1ACD363000CF6821 = {
@@ -223,7 +230,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				124A377E1ACD380500CF6821 /* NoteWithIntervals.swift in Sources */,
+				1292A4B21C033EBA002142CB /* Key.swift in Sources */,
 				124A377A1ACD36CA00CF6821 /* Music.swift in Sources */,
+				1292A4B11C033EBA002142CB /* Chord.swift in Sources */,
 				124A377C1ACD372A00CF6821 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +276,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -341,6 +351,7 @@
 				INFOPLIST_FILE = MusicTheory/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "danielbreves.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -360,6 +371,7 @@
 				INFOPLIST_FILE = MusicTheory/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "danielbreves.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -379,6 +391,7 @@
 				);
 				INFOPLIST_FILE = MusicTheoryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "danielbreves.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -393,6 +406,7 @@
 				);
 				INFOPLIST_FILE = MusicTheoryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "danielbreves.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -416,6 +430,7 @@
 				124A37751ACD363000CF6821 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		124A37761ACD363000CF6821 /* Build configuration list for PBXNativeTarget "MusicTheoryTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +439,7 @@
 				124A37781ACD363000CF6821 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

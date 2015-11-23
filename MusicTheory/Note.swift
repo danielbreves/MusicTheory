@@ -8,84 +8,125 @@
 
 import Foundation
 
-public class Note {
-  public let name: String
-  public let value: Int8
-  public let octave: Int8
-  
+public class Note: Comparable {
+  var _name: String
+
+  public var name: String {
+    return _name
+  }
+
+  public var octave: Int8 {
+    didSet {
+      self._value = nil
+    }
+  }
+
   lazy var letter: String = {
-    return String(first(self.name)!)
+    return String(self.name.characters.first!)
   }()
-  
+
   lazy var letterIndex: Int = {
-    let letter = String(first(self.name)!)
-    return find(Music.Alphabet, letter)!
+    let letter = String(self.name.characters.first!)
+    return Music.Alphabet.indexOf(letter)!
   }()
-  
-  public init(name: String, octave: Int8 = 4) {
-    self.name = name
-    self.octave = octave
-    
-    let keyLetter = String(first(name)!)
-    var oct = octave
+
+  var _value: Int8?
+
+  public var value: Int8 {
+    if self._value != nil {
+      return self._value!
+    }
+
+    let keyLetter = String(self.name.characters.first!)
     var noteValue = Music.Notes[keyLetter]!
-    
-    if countElements(name) > 1 {
-      let accident = name[name.endIndex.predecessor()]
-      
+
+    if self.name.characters.count > 1 {
+      let accident = self.name[self.name.endIndex.predecessor()]
+
       if accident == "#" {
         noteValue++
       } else if accident == "b" {
         noteValue--
       }
     }
-    
-    noteValue += (octave + 1) * 12
-    
-    self.value = noteValue
+
+    noteValue += (self.octave + 1) * 12
+
+    self._value = noteValue
+
+    return self._value!
   }
-  
-  private init(name: String, value: Int8, octave: Int8) {
-    self.name = name
-    self.value = value
+
+  public init(name: String, octave: Int8 = 4) {
+    self._name = name
     self.octave = octave
   }
-  
+
+  private init(name: String, value: Int8, octave: Int8) {
+    self._name = name
+    self.octave = octave
+    self._value = value
+  }
+
   public func scale(type: String) -> RootWithIntervals {
     return RootWithIntervals(root: self, intervals: Music.Scales[type]!)
   }
-  
-  public func chord(quality: String) -> RootWithIntervals {
-    return RootWithIntervals(root: self, intervals: Music.Chords[quality]!)
+
+  public func chord(type: String) -> Chord {
+    return Chord(root: self, type: type)
   }
-  
+
   public func add(intervalSymbol: String) -> Note {
     let interval = Music.Intervals[intervalSymbol]!
     let noteLetterValue = Music.Notes[self.letter]!
     let resultantLetterIndex = (self.letterIndex + Int(interval.degree)) % Music.Alphabet.count
     var resultantNoteName = Music.Alphabet[resultantLetterIndex]
     var resultantLetterValue = Music.Notes[resultantNoteName]!
-    
+
     let resultantNoteValue = self.value + interval.steps
     var octave = self.octave
-    
+
     if resultantLetterValue < noteLetterValue {
       octave++
     }
-    
+
     resultantLetterValue += (octave + 1) * 12
-    
-    let accidentals = distance(resultantLetterValue, resultantNoteValue)
-    
+
+    let accidentals = resultantLetterValue.distanceTo(resultantNoteValue)
+
     if accidentals != 0 {
       let accidentalSymbol = accidentals > 0 ? "#" : "b"
       let numberOfAccidentals = abs(accidentals)
-      
+
       for _ in 0..<numberOfAccidentals {
         resultantNoteName += accidentalSymbol
       }
     }
-    
+
     return Note(name: resultantNoteName, value: resultantNoteValue, octave: octave)
   }
+
+  public func copy() -> Note {
+    return Note(name: self.name, value: self.value, octave: self.octave)
+  }
+}
+
+prefix public func ++(inout note: Note) -> Note {
+  note._value = note._value! + 1
+  note._name += "#"
+  return note
+}
+
+prefix public func --(inout note: Note) -> Note {
+  note._value = note._value! - 1
+  note._name += "b"
+  return note
+}
+
+public func <(lhs: Note, rhs: Note) -> Bool {
+  return lhs.value < rhs.value
+}
+
+public func ==(lhs: Note, rhs: Note) -> Bool {
+  return lhs.value == rhs.value
 }

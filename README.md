@@ -15,3 +15,9 @@ let cFlatMinChord = cFlat.chord("min")
 
 cFlatMinChord.names // ["Cb", "Ebb", "Gb"]
 cFlatMinChord.values // [59, 62, 66]
+
+let cFlatMajor = Key(note: cFlat, quality: "major")
+let cFlatMajorChord = cFlatMajor.chord("I")
+
+cFlatMajorChord.name // "Cb maj"
+cFlatMajorChord.notes.map { $0.name } // ["Cb", "Eb", "Gb"]
