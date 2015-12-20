@@ -1,0 +1,10 @@
+PODS:
+  - STRegex (0.2.6)
+
+DEPENDENCIES:
+  - STRegex
+
+SPEC CHECKSUMS:
+  STRegex: 42baaef0406dd90bfa32e19c202a0c89075809b4
+
+COCOAPODS: 0.39.0

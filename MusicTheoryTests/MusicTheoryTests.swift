@@ -9,6 +9,7 @@
 import Cocoa
 import XCTest
 import MusicTheory
+import Regex
 
 class MusicTheoryTests: XCTestCase {
 
@@ -118,6 +119,18 @@ class MusicTheoryTests: XCTestCase {
 
     XCTAssertEqual((cFlatMajorChord?.notes.map { $0.name })!, ["Cb", "Eb", "Gb"],
       "Cb major chord returns the correct notes")
+  }
+  
+  func testRegex() {
+    let flatOfSharp = "(b|#)?"
+    let scaleDegree = "((?:I{1,3}|i{1,3})|(?:IV|V|VI{1,2}|vi{1,2}))"
+    let augOrDim = "(°|ø|\\+)?"
+    let seventh = "(7)?"
+    let addedNote = "((?:b|#)?(?:5|9|11|13))*"
+    let chordSymbolRegex = Regex("^\(flatOfSharp)\(scaleDegree)\(augOrDim)\(seventh)\(addedNote)$")
+    
+    XCTAssertEqual(chordSymbolRegex.match("bIII+7b5")?.captures[1], "III",
+      "works")
   }
 
 }
