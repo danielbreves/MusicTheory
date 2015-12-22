@@ -50,7 +50,9 @@ public struct Music {
     "min":  ["m3", "M3"],
     "dom7": ["M3", "m3", "m3"],
     "dim":  ["m3", "m3"],
-    "aug":  ["M3", "M3"]
+    "aug":  ["M3", "M3"],
+    "sus4": ["P4", "M2"],
+    "sus2": ["M2", "P4"]
   ]
 
   public static let CircleOfFifths = [

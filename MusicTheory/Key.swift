@@ -13,7 +13,7 @@ public class Key: Comparable {
   let quality: String
   let name: String
 
-  lazy var scale: RootWithIntervals = {
+  public lazy var scale: RootWithIntervals = {
     return self.note.scale(self.quality)
   }()
 
@@ -45,7 +45,7 @@ public class Key: Comparable {
     self.name = "\(note.name) \(quality)"
   }
 
-  convenience init(name: String, quality: String = "major") {
+  public convenience init(name: String, quality: String = "major") {
     let note = Note(name: name)
     self.init(note: note, quality: quality)
   }

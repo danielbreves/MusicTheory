@@ -121,16 +121,44 @@ class MusicTheoryTests: XCTestCase {
       "Cb major chord returns the correct notes")
   }
   
-  func testRegex() {
-    let flatOfSharp = "(b|#)?"
-    let scaleDegree = "((?:I{1,3}|i{1,3})|(?:IV|V|VI{1,2}|vi{1,2}))"
-    let augOrDim = "(°|ø|\\+)?"
-    let seventh = "(7)?"
-    let addedNote = "((?:b|#)?(?:5|9|11|13))*"
-    let chordSymbolRegex = Regex("^\(flatOfSharp)\(scaleDegree)\(augOrDim)\(seventh)\(addedNote)$")
-    
-    XCTAssertEqual(chordSymbolRegex.match("bIII+7b5")?.captures[1], "III",
-      "works")
+  func testChordsInKey() {
+    let cMajor = Key(name: "C")
+
+    let chordG7 = Chord(key: cMajor, name: "V7")
+    XCTAssertEqual(chordG7.names, ["G", "B", "D", "F"],
+      "V7 in the key of C Major returns the correct notes")
+
+    let chordGM7 = Chord(key: cMajor, name: "VM7")
+    XCTAssertEqual(chordGM7.names, ["G", "B", "D", "F#"],
+      "VM7 in the key of C Major returns the correct notes")
+    XCTAssertEqual(chordGM7.names, Chord(key: cMajor, name: "Vmaj7").names,
+      "VM7 is equivalent to Vmaj7")
+
+    let chordGm7 = Chord(key: cMajor, name: "Vm7")
+    XCTAssertEqual(chordGm7.names, ["G", "Bb", "D", "F"],
+      "Vm7 in the key of C Major returns the correct notes")
+    XCTAssertEqual(chordGm7.names, Chord(key: cMajor, name: "Vmin7").names,
+      "Vm7 is equivalent to Vmin7")
+
+    let chordGdim = Chord(key: cMajor, name: "Vdim")
+    XCTAssertEqual(chordGdim.names, ["G", "Bb", "Db"],
+      "Vdim in the key of C Major returns the correct notes")
+
+    let chordGaug = Chord(key: cMajor, name: "Vaug")
+    XCTAssertEqual(chordGaug.names, ["G", "B", "D#"],
+      "Vaug in the key of C Major returns the correct notes")
+
+    let chordGM7sus2 = Chord(key: cMajor, name: "Vsus2")
+    XCTAssertEqual(chordGM7sus2.names, ["G", "A", "D"],
+      "Isus27 in the key of C Major returns the correct notes")
+
+    let chordGM7sus4 = Chord(key: cMajor, name: "Vsus4M7")
+    XCTAssertEqual(chordGM7sus4.names, ["G", "C", "D", "F#"],
+      "Vsus4M7 in the key of C Major returns the correct notes")
+
+    let chordGminM7 = Chord(key: cMajor, name: "VminM7")
+    XCTAssertEqual(chordGminM7.names, ["G", "Bb", "D", "F#"],
+      "VminM7 in the key of C Major returns the correct notes")
   }
 
 }
