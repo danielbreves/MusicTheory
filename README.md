@@ -34,3 +34,7 @@ Put this in your Podfile:
 ```ruby
 pod 'MusicTheory', '~> 0.2'
 ```
+
+## License
+
+See [LICENSE](LICENSE).
