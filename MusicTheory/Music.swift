@@ -40,7 +40,7 @@ public struct Music {
     "d7": (6, 9),
     "m7": (6, 10),
     "M7": (6, 11),
-    "+7": (6, 12),
+    "A7": (6, 12),
     "P8": (7, 12),
   ]
 
@@ -49,15 +49,35 @@ public struct Music {
     "minor": ["M2", "m3", "P4", "P5", "m6", "m7"]
   ]
 
-  public static let Chords = [
-    "maj":  ["M3", "P5"],
-    "min":  ["m3", "P5"],
-    "dom7": ["M3", "P5", "m7"],
-    "dim":  ["m3", "d5"],
-    "aug":  ["M3", "A5"],
-    "sus4": ["P4", "P5"],
-    "sus2": ["M2", "P5"]
-  ]
+  public static let Chords: [String: [String]] = {
+    var chordSymbolMap = [
+      "min":  ["m3", "P5"],
+      "maj":  ["M3", "P5"],
+      "dim":  ["m3", "d5"],
+      "aug":  ["M3", "A5"],
+      "sus":  ["P4", "P5"],
+      "sus2": ["M2", "P5"],
+      "m2":   ["M2", "m3", "P5"],
+      "M2":   ["M2", "M3", "P5"],
+      "m6":   ["m3", "P5", "M6"],
+      "M6":   ["M3", "P5", "M6"],
+      "7":    ["M3", "P5", "m7"],
+      "m7":   ["m3", "P5", "m7"],
+      "M7":   ["M3", "P5", "M7"],
+      "7sus": ["P4", "P5", "m7"],
+      "dim7": ["m3", "d5", "d7"],
+      "m7b5": ["m3", "d5", "m7"],
+      "mM7":  ["m3", "P5", "M7"],
+      "aug7": ["M3", "A5", "m7"],
+      "M7b5": ["M3", "d5", "M7"],
+      "M7#5": ["M3", "A5", "M7"],
+    ]
+
+    chordSymbolMap["m"] = chordSymbolMap["min"]
+    chordSymbolMap["M"] = chordSymbolMap["maj"]
+
+    return chordSymbolMap
+  }()
 
   public static let CircleOfFifths = [
     "major": ["C", "G", "D", "A", "E", "B", "F#", "C#", "F", "Bb", "Eb", "Ab", "Db", "Gb", "Cb"],

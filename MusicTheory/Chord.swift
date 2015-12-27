@@ -9,62 +9,29 @@
 import Foundation
 import Regex
 
+enum ChordMatchError: ErrorType {
+  case InvalidChordName
+  case InvalidChordSymbol
+}
+
 func parseChord(name: String) -> MatchResult? {
   let flatOrSharp = "([b#])?"
   let scaleDegree = "(I{1,3}|IV|VI{0,2})"
-  let minMajDimAugOrSus = "(min|maj|dim|aug|sus4|sus2)?"
-  let seventh = "([mMd+]?7)?"
-  let fifth = "([b#]5)?"
-  let added = "([b#]?(?:6|9|11|13))*"
-  let chordSymbolRegex = Regex("^\(flatOrSharp)\(scaleDegree)\(minMajDimAugOrSus)\(seventh)\(fifth)\(added)$")
+  let chordSymbol = "([a-zA-Z0-9#]{1,4})?"
+  let chordSymbolRegex = Regex("^\(flatOrSharp)\(scaleDegree)\(chordSymbol)$")
 
   return chordSymbolRegex.match(name)
 }
 
-func buildChord(parts: [String?]) -> [String] {
-  var minMajDimAugOrSus = parts[2]
-  var seventh = parts[3]
-  let fifth = parts[4]
+func buildChord(parts: [String?]) throws -> [String] {
+  let chordSymbol = parts[2] == nil ? "maj" : parts[2]
+  let intervals = Music.Chords[chordSymbol!]
 
-  if (seventh == "7" || seventh == "+7") {
-    switch parts[2] {
-    case "maj"?:
-      seventh = "M7"
-    case "dim"?:
-      seventh = "d7"
-    default:
-      seventh = "m7"
-    }
-  }
-
-  if (minMajDimAugOrSus == nil) {
-    switch parts[3] {
-    case "m7"?:
-      minMajDimAugOrSus = "min"
-    case "d7"?:
-      minMajDimAugOrSus = "dim"
-    case "+7"?:
-      minMajDimAugOrSus = "aug"
-    default:
-      minMajDimAugOrSus = "maj"
-    }
-  }
-
-  var intervals = Music.Chords[minMajDimAugOrSus!]
-
-  let indexOfFifth = intervals?.indexOf("P5")
-  if (indexOfFifth != nil && fifth != nil) {
-    let flatOrSharp = fifth?.characters.first!
-    intervals![indexOfFifth!] = flatOrSharp == "b" ? "d5" : "A5"
-  }
-
-  if (seventh != nil) {
-    intervals?.append(seventh!)
+  if (intervals == nil) {
+    throw ChordMatchError.InvalidChordSymbol
   }
 
   print(intervals)
-
-  // implement added notes
 
   return intervals!
 }
@@ -124,7 +91,9 @@ public class Chord: RootWithIntervals {
     self.name = name.stringByReplacingOccurrencesOfString(scaleDegree!, withString: root.name)
     self.octave = root.octave
 
-    super.init(root: root, intervals: buildChord(chordParts!))
+    let chordIntevals = try! buildChord(chordParts!)
+
+    super.init(root: root, intervals: chordIntevals )
   }
 
   private init(name: String, octave: Int8, position: Int8, notes: [Note]) {
