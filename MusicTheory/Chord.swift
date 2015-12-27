@@ -11,40 +11,58 @@ import Regex
 
 func parseChord(name: String) -> MatchResult? {
   let flatOrSharp = "([b#])?"
-  let scaleDegree = "((?:I{1,3}|i{1,3})|(?:IV|iv|VI{0,2}|vi{0,2}))"
+  let scaleDegree = "(I{1,3}|IV|VI{0,2})"
   let minMajDimAugOrSus = "(min|maj|dim|aug|sus4|sus2)?"
-  let seventh = "([mM]?7)?"
-  let added = "([b#]?(?:5|6|9|11|13))*"
-  let chordSymbolRegex = Regex("^\(flatOrSharp)\(scaleDegree)\(minMajDimAugOrSus)\(seventh)\(added)$")
+  let seventh = "([mMd+]?7)?"
+  let fifth = "([b#]5)?"
+  let added = "([b#]?(?:6|9|11|13))*"
+  let chordSymbolRegex = Regex("^\(flatOrSharp)\(scaleDegree)\(minMajDimAugOrSus)\(seventh)\(fifth)\(added)$")
 
   return chordSymbolRegex.match(name)
 }
 
 func buildChord(parts: [String?]) -> [String] {
-  let minMajDimAugOrSus = parts[2]
-  let seventh = parts[3]
-  var intervals = Music.Chords["maj"]
+  var minMajDimAugOrSus = parts[2]
+  var seventh = parts[3]
+  let fifth = parts[4]
 
-  if (minMajDimAugOrSus != nil) {
-    intervals = Music.Chords[minMajDimAugOrSus!]
-
-    if (seventh == "7") {
-      if (minMajDimAugOrSus == "maj") {
-        intervals?.append("M3")
-      } else if (["min", "dim", "sus2", "sus4"].contains(minMajDimAugOrSus!)) {
-        intervals?.append("m3")
-      }
+  if (seventh == "7" || seventh == "+7") {
+    switch parts[2] {
+    case "maj"?:
+      seventh = "M7"
+    case "dim"?:
+      seventh = "d7"
+    default:
+      seventh = "m7"
     }
-  } else if (seventh == "7") {
-    intervals = Music.Chords["dom7"]
   }
 
-  if (seventh == "M7") {
-    intervals?.append("M3")
-  } else if (seventh == "m7") {
-    intervals = Music.Chords["min"]
-    intervals?.append("m3")
+  if (minMajDimAugOrSus == nil) {
+    switch parts[3] {
+    case "m7"?:
+      minMajDimAugOrSus = "min"
+    case "d7"?:
+      minMajDimAugOrSus = "dim"
+    case "+7"?:
+      minMajDimAugOrSus = "aug"
+    default:
+      minMajDimAugOrSus = "maj"
+    }
   }
+
+  var intervals = Music.Chords[minMajDimAugOrSus!]
+
+  let indexOfFifth = intervals?.indexOf("P5")
+  if (indexOfFifth != nil && fifth != nil) {
+    let flatOrSharp = fifth?.characters.first!
+    intervals![indexOfFifth!] = flatOrSharp == "b" ? "d5" : "A5"
+  }
+
+  if (seventh != nil) {
+    intervals?.append(seventh!)
+  }
+
+  print(intervals)
 
   // implement added notes
 
@@ -90,6 +108,7 @@ public class Chord: RootWithIntervals {
   }
 
   public init(key: Key, name: String) {
+    print(name)
     let chordParts = parseChord(name)?.captures
     let flatOrSharp = chordParts![0]
     let scaleDegree = chordParts![1]

@@ -16,7 +16,7 @@ public class RootWithIntervals {
     var notes = [currentNote]
 
     for interval in intervals {
-      currentNote = currentNote.add(interval)
+      currentNote = root.add(interval)
       notes.append(currentNote)
     }
 
