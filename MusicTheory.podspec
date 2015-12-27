@@ -20,5 +20,5 @@ DESC
   s.watchos.deployment_target = "2.0"
   s.tvos.deployment_target    = "9.0"
 
-  # s.dependency "STRegex", "v0.2.3"
+  s.dependency "STRegex", "~> 0.3"
 end

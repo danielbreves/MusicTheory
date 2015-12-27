@@ -2,4 +2,4 @@
 # platform :ios, '8.0'
 use_frameworks!
 
-pod "STRegex", git: "https://github.com/sharplet/Regex.git", commit: "7c04e48"
+pod "STRegex", "~> 0.3"
