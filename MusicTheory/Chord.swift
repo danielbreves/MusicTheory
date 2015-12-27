@@ -36,8 +36,6 @@ func buildChord(parts: [String?]) throws -> [String] {
     throw ChordMatchError.InvalidChordSymbol
   }
 
-  print(intervals)
-
   return intervals!
 }
 
@@ -80,7 +78,6 @@ public class Chord: RootWithIntervals {
   }
 
   public init(key: Key, name: String) {
-    print(name)
     let chordParts = try! parseChord(name).captures
     let flatOrSharp = chordParts[0]
     let scaleDegree = chordParts[1]
