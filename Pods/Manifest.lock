@@ -1,0 +1,20 @@
+PODS:
+  - STRegex (0.2.6)
+
+DEPENDENCIES:
+  - STRegex (from `https://github.com/sharplet/Regex.git`, commit `7c04e48`)
+
+EXTERNAL SOURCES:
+  STRegex:
+    :commit: 7c04e48
+    :git: https://github.com/sharplet/Regex.git
+
+CHECKOUT OPTIONS:
+  STRegex:
+    :commit: 7c04e48
+    :git: https://github.com/sharplet/Regex.git
+
+SPEC CHECKSUMS:
+  STRegex: 42baaef0406dd90bfa32e19c202a0c89075809b4
+
+COCOAPODS: 0.39.0

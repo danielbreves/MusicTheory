@@ -7,6 +7,37 @@
 //
 
 import Foundation
+import Regex
+
+enum ChordMatchError: ErrorType {
+  case InvalidChordName
+  case InvalidChordSymbol
+}
+
+func parseChord(name: String) throws -> MatchResult {
+  let flatOrSharp = "([b#])?"
+  let scaleDegree = "(I{1,3}|IV|VI{0,2})"
+  let chordSymbol = "([a-zA-Z0-9#]{1,4})?"
+  let chordSymbolRegex = Regex("^\(flatOrSharp)\(scaleDegree)\(chordSymbol)$")
+  let chordSymbolMatch = chordSymbolRegex.match(name)
+
+  if (chordSymbolMatch == nil) {
+    throw ChordMatchError.InvalidChordName
+  }
+
+  return chordSymbolMatch!
+}
+
+func buildChord(parts: [String?]) throws -> [String] {
+  let chordSymbol = parts[2] == nil ? "maj" : parts[2]
+  let intervals = Music.Chords[chordSymbol!]
+
+  if (intervals == nil) {
+    throw ChordMatchError.InvalidChordSymbol
+  }
+
+  return intervals!
+}
 
 public class Chord: RootWithIntervals {
   public let name: String
@@ -40,10 +71,31 @@ public class Chord: RootWithIntervals {
     }
   }
 
-  init(root: Note, type: String) {
+  public init(root: Note, type: String) {
     self.name = "\(root.name) \(type)"
     self.octave = root.octave
     super.init(root: root, intervals: Music.Chords[type]!)
+  }
+
+  public init(key: Key, name: String) {
+    let chordParts = try! parseChord(name).captures
+    let flatOrSharp = chordParts[0]
+    let scaleDegree = chordParts[1]
+    let scaleIndex = Music.Degrees.indexOf(scaleDegree!)
+    var root = key.scale.notes[scaleIndex!]
+
+    if (flatOrSharp == "b") {
+      --root
+    } else if (flatOrSharp == "#") {
+      ++root
+    }
+
+    self.name = name.stringByReplacingOccurrencesOfString(scaleDegree!, withString: root.name)
+    self.octave = root.octave
+
+    let chordIntevals = try! buildChord(chordParts)
+
+    super.init(root: root, intervals: chordIntevals )
   }
 
   private init(name: String, octave: Int8, position: Int8, notes: [Note]) {

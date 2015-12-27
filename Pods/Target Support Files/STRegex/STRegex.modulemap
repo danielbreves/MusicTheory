@@ -1,0 +1,6 @@
+framework module Regex {
+  umbrella header "STRegex-umbrella.h"
+
+  export *
+  module * { export * }
+}
