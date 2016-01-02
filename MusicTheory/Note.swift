@@ -113,13 +113,25 @@ public class Note: Comparable {
 
 prefix public func ++(inout note: Note) -> Note {
   note._value = note._value! + 1
-  note._name += "#"
+
+  if (note._name.characters.last == "b") {
+    note._name.removeAtIndex(note._name.endIndex.predecessor())
+  } else {
+    note._name += "#"
+  }
+
   return note
 }
 
 prefix public func --(inout note: Note) -> Note {
   note._value = note._value! - 1
-  note._name += "b"
+
+  if (note._name.characters.last == "#") {
+    note._name.removeAtIndex(note._name.endIndex.predecessor())
+  } else {
+    note._name += "b"
+  }
+
   return note
 }
 

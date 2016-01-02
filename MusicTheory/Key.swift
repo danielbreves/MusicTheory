@@ -9,33 +9,12 @@
 import Foundation
 
 public class Key: Comparable {
-  let note: Note
-  let quality: String
-  let name: String
+  public let note: Note
+  public let quality: String
+  public let name: String
 
   public lazy var scale: RootWithIntervals = {
     return self.note.scale(self.quality)
-  }()
-
-  lazy var chordTypes: [String] = {
-    if (self.quality == "minor") {
-      return ["min", "dim", "maj", "min", "min", "maj", "maj"]
-    }
-
-    return ["maj", "min", "min", "maj", "maj", "min", "dim"]
-  }()
-
-  typealias ChordSetItem = (degree: String, chord: Chord)
-
-  lazy var chordSet: [ChordSetItem] = {
-    var result = [ChordSetItem]()
-
-    for (i, note) in self.scale.notes.enumerate() {
-      let chordDegree = Music.Degrees[i]
-      result.append(degree: chordDegree, chord: Chord(root: note, type: self.chordTypes[i]))
-    }
-
-    return result
   }()
 
   public init(note: Note, quality: String) {
@@ -50,14 +29,24 @@ public class Key: Comparable {
     self.init(note: note, quality: quality)
   }
 
-  public func chord(degree: String) -> Chord? {
-    for item in self.chordSet {
-      if (item.degree == degree) {
-        return item.chord
-      }
+  public func chord(degree: String, type: String = "maj") -> Chord? {
+    var degreeSymbol = degree
+    let flatOrSharp = degree.characters.first
+
+    if (flatOrSharp == "b" || flatOrSharp == "#") {
+      degreeSymbol.removeAtIndex(degreeSymbol.startIndex)
     }
 
-    return nil
+    let scaleIndex = Music.Degrees.indexOf(degreeSymbol)
+    var root = self.scale.notes[scaleIndex!].copy()
+
+    if (flatOrSharp == "b") {
+      --root
+    } else if (flatOrSharp == "#") {
+      ++root
+    }
+
+    return Chord(root: root, type: type)
   }
 }
 
