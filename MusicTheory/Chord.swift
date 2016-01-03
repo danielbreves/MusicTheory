@@ -41,7 +41,8 @@ public class Chord: RootWithIntervals {
   }
 
   public init(root: Note, type: String) {
-    self.name = "\(root.name) \(type)"
+    let chordTypeName = type == "maj" || type == "M" ? "" : type
+    self.name = "\(root.name)\(chordTypeName)"
     self.octave = root.octave
     super.init(root: root, intervals: Music.Chords[type]!)
   }
