@@ -33,16 +33,16 @@ public class Key: Comparable {
     var degreeSymbol = degree
     let flatOrSharp = degree.characters.first
 
-    if (flatOrSharp == "b" || flatOrSharp == "#") {
+    if (flatOrSharp == Music.FLAT || flatOrSharp == Music.SHARP) {
       degreeSymbol.removeAtIndex(degreeSymbol.startIndex)
     }
 
     let scaleIndex = Music.Degrees.indexOf(degreeSymbol)
     var root = self.scale.notes[scaleIndex!].copy()
 
-    if (flatOrSharp == "b") {
+    if (flatOrSharp == Music.FLAT) {
       --root
-    } else if (flatOrSharp == "#") {
+    } else if (flatOrSharp == Music.SHARP) {
       ++root
     }
 

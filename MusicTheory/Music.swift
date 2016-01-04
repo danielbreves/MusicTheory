@@ -9,6 +9,9 @@
 import Foundation
 
 public struct Music {
+  public static let SHARP: Character = "♯"
+  public static let FLAT: Character = "♭"
+
   public static let Notes: [String: Int8] = [
     "C": 0,
     "D": 2,
@@ -66,11 +69,11 @@ public struct Music {
       "M7":   ["M3", "P5", "M7"],
       "7sus": ["P4", "P5", "m7"],
       "dim7": ["m3", "d5", "d7"],
-      "m7b5": ["m3", "d5", "m7"],
+      "m7♭5": ["m3", "d5", "m7"],
       "mM7":  ["m3", "P5", "M7"],
       "aug7": ["M3", "A5", "m7"],
-      "M7b5": ["M3", "d5", "M7"],
-      "M7#5": ["M3", "A5", "M7"],
+      "M7♭5": ["M3", "d5", "M7"],
+      "M7♯5": ["M3", "A5", "M7"],
     ]
 
     chordSymbolMap["m"] = chordSymbolMap["min"]
@@ -80,7 +83,7 @@ public struct Music {
   }()
 
   public static let CircleOfFifths = [
-    "major": ["C", "G", "D", "A", "E", "B", "F#", "C#", "F", "Bb", "Eb", "Ab", "Db", "Gb", "Cb"],
-    "minor": ["A", "E", "B", "F#", "C#", "G#", "D#", "A#", "D", "G", "C", "F", "Bb", "Eb", "Ab"]
+    "major": ["C", "G", "D", "A", "E", "B", "F♯", "C♯", "F", "B♭", "E♭", "A♭", "D♭", "G♭", "C♭"],
+    "minor": ["A", "E", "B", "F♯", "C♯", "G♯", "D♯", "A♯", "D", "G", "C", "F", "B♭", "E♭", "A♭"]
   ]
 }

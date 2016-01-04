@@ -43,9 +43,9 @@ public class Note: Comparable {
     if self.name.characters.count > 1 {
       let accident = self.name[self.name.endIndex.predecessor()]
 
-      if accident == "#" {
+      if accident == Music.SHARP {
         noteValue++
-      } else if accident == "b" {
+      } else if accident == Music.FLAT {
         noteValue--
       }
     }
@@ -95,11 +95,11 @@ public class Note: Comparable {
     let accidentals = resultantLetterValue.distanceTo(resultantNoteValue)
 
     if accidentals != 0 {
-      let accidentalSymbol = accidentals > 0 ? "#" : "b"
+      let accidentalSymbol = accidentals > 0 ? Music.SHARP : Music.FLAT
       let numberOfAccidentals = abs(accidentals)
 
       for _ in 0..<numberOfAccidentals {
-        resultantNoteName += accidentalSymbol
+        resultantNoteName.append(accidentalSymbol)
       }
     }
 
@@ -114,10 +114,10 @@ public class Note: Comparable {
 prefix public func ++(inout note: Note) -> Note {
   note._value = note._value! + 1
 
-  if (note._name.characters.last == "b") {
+  if (note._name.characters.last == Music.FLAT) {
     note._name.removeAtIndex(note._name.endIndex.predecessor())
   } else {
-    note._name += "#"
+    note._name.append(Music.SHARP)
   }
 
   return note
@@ -126,10 +126,10 @@ prefix public func ++(inout note: Note) -> Note {
 prefix public func --(inout note: Note) -> Note {
   note._value = note._value! - 1
 
-  if (note._name.characters.last == "#") {
+  if (note._name.characters.last == Music.SHARP) {
     note._name.removeAtIndex(note._name.endIndex.predecessor())
   } else {
-    note._name += "b"
+    note._name.append(Music.FLAT)
   }
 
   return note
