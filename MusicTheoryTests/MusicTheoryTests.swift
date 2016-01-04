@@ -112,12 +112,17 @@ class MusicTheoryTests: XCTestCase {
   func testKey() {
     let cFlat = Note(name: "C♭")
     let cFlatMajor = Key(note: cFlat, quality: "major")
-    let cFlatMajorChord = cFlatMajor.chord("I")
 
-    XCTAssertEqual(cFlatMajorChord?.name, "C♭",
+    let cFlatMajorScale = cFlatMajor.scale
+    XCTAssertEqual(cFlatMajorScale.values, cFlat.scale("major").values,
+      "C♭ major scale returns the correct values")
+
+    let cFlatMajorChord = cFlatMajor.chord("I")!
+
+    XCTAssertEqual(cFlatMajorChord.name, "C♭",
       "C♭ major chord return the correct name")
 
-    XCTAssertEqual((cFlatMajorChord?.notes.map { $0.name })!, ["C♭", "E♭", "G♭"],
+    XCTAssertEqual(cFlatMajorChord.names, ["C♭", "E♭", "G♭"],
       "C♭ major chord returns the correct notes")
   }
 

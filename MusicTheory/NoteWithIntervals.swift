@@ -9,7 +9,7 @@
 import Foundation
 
 public class RootWithIntervals {
-  public var notes: [Note]
+  internal(set) public var notes: [Note]
 
   public init(root: Note, intervals: [String]) {
     var currentNote = root

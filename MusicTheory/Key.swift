@@ -13,7 +13,7 @@ public class Key: Comparable {
   public let quality: String
   public let name: String
 
-  public lazy var scale: RootWithIntervals = {
+  private(set) public lazy var scale: RootWithIntervals = {
     return self.note.scale(self.quality)
   }()
 
