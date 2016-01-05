@@ -117,75 +117,75 @@ class MusicTheoryTests: XCTestCase {
     XCTAssertEqual(cFlatMajorScale.values, cFlat.scale("major").values,
       "C♭ major scale returns the correct values")
 
-    let cFlatMajorChord = cFlatMajor.chord("I")!
+    let cFlatI = cFlatMajor.chord("I")!
+    XCTAssertEqual(cFlatI.name, "C♭",
+      "I in the key of C♭ major chord return the correct name")
+    XCTAssertEqual(cFlatI.names, ["C♭", "E♭", "G♭"],
+      "I in the key of C♭ major chord returns the correct notes")
 
-    XCTAssertEqual(cFlatMajorChord.name, "C♭",
-      "C♭ major chord return the correct name")
+    let cFlatIIm = cFlatMajor.chord("II", type: "m")!
+    XCTAssertEqual(cFlatIIm.names, ["D♭", "F♭", "A♭"],
+      "IIm in the key of C♭ Major returns the correct notes")
 
-    XCTAssertEqual(cFlatMajorChord.names, ["C♭", "E♭", "G♭"],
-      "C♭ major chord returns the correct notes")
+    let cFlatbII = cFlatMajor.chord("♭II")!
+    XCTAssertEqual(cFlatbII.names, ["D♭♭", "F♭", "A♭♭"],
+      "IIm in the key of C♭ Major returns the correct notes")
+
+    let cFlatIIm7 = cFlatMajor.chord("II", type: "m7")!
+    XCTAssertEqual(cFlatIIm7.names, ["D♭", "F♭", "A♭", "C♭"],
+      "IIm7 in the key of C♭ Major returns the correct notes")
+
+    let cFlatIVM7 = cFlatMajor.chord("IV", type: "M7")!
+    XCTAssertEqual(cFlatIVM7.names, ["F♭", "A♭", "C♭", "E♭"],
+      "IVM7 in the key of C♭ Major returns the correct notes")
+
+    let cFlatIVmM7 = cFlatMajor.chord("IV", type: "mM7")!
+    XCTAssertEqual(cFlatIVmM7.names, ["F♭", "A♭♭", "C♭", "E♭"],
+      "IVmM7 in the key of C♭ Major returns the correct notes")
+
+    let cFlatV7 = cFlatMajor.chord("V", type: "7")!
+    XCTAssertEqual(cFlatV7.names, ["G♭", "B♭", "D♭", "F♭"],
+      "V7 in the key of C♭ Major returns the correct notes")
+
+    let cFlatVaug = cFlatMajor.chord("V", type: "aug")!
+    XCTAssertEqual(cFlatVaug.names, ["G♭", "B♭", "D"],
+      "Vaug in the key of C♭ Major returns the correct notes")
+
+    let cFlatVaug7 = cFlatMajor.chord("V", type: "aug7")!
+    XCTAssertEqual(cFlatVaug7.names, ["G♭", "B♭", "D", "F♭"],
+      "Vaug7 in the key of C♭ Major returns the correct notes")
+
+    let cFlatVsus = cFlatMajor.chord("V", type: "sus")!
+    XCTAssertEqual(cFlatVsus.names, ["G♭", "C♭", "D♭"],
+      "Vsus in the key of C♭ Major returns the correct notes")
+
+    let cFlatVsus2 = cFlatMajor.chord("V", type: "sus2")!
+    XCTAssertEqual(cFlatVsus2.names, ["G♭", "A♭", "D♭"],
+      "Vsus2 in the key of C♭ Major returns the correct notes")
+
+    let cFlatV7sus = cFlatMajor.chord("V", type: "7sus")!
+    XCTAssertEqual(cFlatV7sus.names, ["G♭", "C♭", "D♭", "F♭"],
+      "V7sus in the key of C♭ Major returns the correct notes")
+
+    let cFlatVM7sharp5 = cFlatMajor.chord("V", type: "M7♯5")!
+    XCTAssertEqual(cFlatVM7sharp5.names, ["G♭", "B♭", "D", "F"],
+      "VM7♯5 in the key of C Major returns the correct notes")
+
+    let cFlatVM7flat5 = cFlatMajor.chord("V", type: "M7♭5")!
+    XCTAssertEqual(cFlatVM7flat5.names, ["G♭", "B♭", "D♭♭", "F"],
+      "VM7♭5 in the key of C Major returns the correct notes")
+
+    let cFlatVIIdim = cFlatMajor.chord("VII", type: "dim")!
+    XCTAssertEqual(cFlatVIIdim.names, ["B♭", "D♭", "F♭"],
+      "cFlatVIIdim in the key of C♭ Major returns the correct notes")
+
+    let cFlatVIIm7b5 = cFlatMajor.chord("VII", type: "m7♭5")! // needs better error handling when degree or type is invalid
+    XCTAssertEqual(cFlatVIIm7b5.names, ["B♭", "D♭", "F♭", "A♭"],
+      "VIIm7b5 in the key of C♭ Major returns the correct notes")
+
+    let cFlatVIIdim7 = cFlatMajor.chord("VII", type: "dim7")!
+    XCTAssertEqual(cFlatVIIdim7.names, ["B♭", "D♭", "F♭", "A♭♭"],
+      "cFlatVIIdim in the key of C♭ Major returns the correct notes")
   }
-
-//  func testChordsInKey() {
-//    let cMajor = Key(name: "C")
-//
-//    let chordG7 = Chord(key: cMajor, name: "V7")
-//    XCTAssertEqual(chordG7.names, ["G", "B", "D", "F"],
-//      "V7 in the key of C Major returns the correct notes")
-//
-//    let chordGM7 = Chord(key: cMajor, name: "VM7")
-//    XCTAssertEqual(chordGM7.names, ["G", "B", "D", "F♯"],
-//      "VM7 in the key of C Major returns the correct notes")
-//
-//    let chordGM7♭5 = Chord(key: cMajor, name: "VM7♭5")
-//    XCTAssertEqual(chordGM7♭5.names, ["G", "B", "D♭", "F♯"],
-//      "VM7♭5 in the key of C Major returns the correct notes")
-//
-//    let chordGM7sharp5 = Chord(key: cMajor, name: "VM7♯5")
-//    XCTAssertEqual(chordGM7sharp5.names, ["G", "B", "D♯", "F♯"],
-//      "VM7♯5 in the key of C Major returns the correct notes")
-//
-//    let chordGm7 = Chord(key: cMajor, name: "Vm7")
-//    XCTAssertEqual(chordGm7.names, ["G", "B♭", "D", "F"],
-//      "Vm7 in the key of C Major returns the correct notes")
-//
-//    let chordGm7♭5 = Chord(key: cMajor, name: "Vm7♭5")
-//    XCTAssertEqual(chordGm7♭5.names, ["G", "B♭", "D♭", "F"],
-//      "Vm7♭5 in the key of C Major returns the correct notes")
-//
-//    let chordGdim = Chord(key: cMajor, name: "Vdim")
-//    XCTAssertEqual(chordGdim.names, ["G", "B♭", "D♭"],
-//      "Vdim in the key of C Major returns the correct notes")
-//
-//    let chordGdim7 = Chord(key: cMajor, name: "Vdim7")
-//    XCTAssertEqual(chordGdim7.names, ["G", "B♭", "D♭", "F♭"],
-//      "Vdim7 in the key of C Major returns the correct notes")
-//
-//    let chordGaug = Chord(key: cMajor, name: "Vaug")
-//    XCTAssertEqual(chordGaug.names, ["G", "B", "D♯"],
-//      "Vaug in the key of C Major returns the correct notes")
-//
-//    let chordGaug7 = Chord(key: cMajor, name: "Vaug7")
-//    XCTAssertEqual(chordGaug7.names, ["G", "B", "D♯", "F"],
-//      "Vaug7 in the key of C Major returns the correct notes")
-//    XCTAssertEqual(chordGaug7.names, Chord(key: cMajor, name: "Vaug7").names,
-//      "Vaug7 is equivalent to V+7")
-//
-//    let chordGsus2 = Chord(key: cMajor, name: "Vsus2")
-//    XCTAssertEqual(chordGsus2.names, ["G", "A", "D"],
-//      "Vsus2 in the key of C Major returns the correct notes")
-//
-//    let chordGsus = Chord(key: cMajor, name: "Vsus")
-//    XCTAssertEqual(chordGsus.names, ["G", "C", "D"],
-//      "Vsus in the key of C Major returns the correct notes")
-//
-//    let chordG7sus = Chord(key: cMajor, name: "V7sus")
-//    XCTAssertEqual(chordG7sus.names, ["G", "C", "D", "F"],
-//      "V7sus in the key of C Major returns the correct notes")
-//
-//    let chordGmM7 = Chord(key: cMajor, name: "VmM7")
-//    XCTAssertEqual(chordGmM7.names, ["G", "B♭", "D", "F♯"],
-//      "VmM7 in the key of C Major returns the correct notes")
-//  }
 
 }
