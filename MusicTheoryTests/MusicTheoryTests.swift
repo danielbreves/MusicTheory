@@ -9,7 +9,6 @@
 import Cocoa
 import XCTest
 import MusicTheory
-import Regex
 
 class MusicTheoryTests: XCTestCase {
 
