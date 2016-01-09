@@ -16,6 +16,7 @@
 		124A37801ACD3BCA00CF6821 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 124A377F1ACD3BCA00CF6821 /* LICENSE */; };
 		1292A4B11C033EBA002142CB /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1292A4AF1C033EBA002142CB /* Chord.swift */; };
 		1292A4B21C033EBA002142CB /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1292A4B01C033EBA002142CB /* Key.swift */; };
+		1298B5471C41CFAA00966E1A /* MusicTheory.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 1298B5461C41CFAA00966E1A /* MusicTheory.podspec */; };
 		515E480175FE9EA9BE4C7164 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41A857ADC55F6FEF4BC3287B /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,9 @@
 		124A377F1ACD3BCA00CF6821 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1292A4AF1C033EBA002142CB /* Chord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
 		1292A4B01C033EBA002142CB /* Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		1298B5421C41CB2300966E1A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1298B5441C41CDFC00966E1A /* Changelog.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Changelog.md; sourceTree = "<group>"; };
+		1298B5461C41CFAA00966E1A /* MusicTheory.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MusicTheory.podspec; sourceTree = "<group>"; };
 		41A857ADC55F6FEF4BC3287B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD0C8C0763B03FD45EE4B6F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D507FBF7C3B37500FFEDF860 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +74,9 @@
 		124A37531ACD363000CF6821 = {
 			isa = PBXGroup;
 			children = (
+				1298B5461C41CFAA00966E1A /* MusicTheory.podspec */,
+				1298B5441C41CDFC00966E1A /* Changelog.md */,
+				1298B5421C41CB2300966E1A /* README.md */,
 				124A377F1ACD3BCA00CF6821 /* LICENSE */,
 				124A375F1ACD363000CF6821 /* MusicTheory */,
 				124A376C1ACD363000CF6821 /* MusicTheoryTests */,
@@ -238,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				124A37801ACD3BCA00CF6821 /* LICENSE in Resources */,
+				1298B5471C41CFAA00966E1A /* MusicTheory.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

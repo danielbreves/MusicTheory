@@ -179,7 +179,7 @@ class MusicTheoryTests: XCTestCase {
     XCTAssertEqual(cFlatVIIdim.names, ["B♭", "D♭", "F♭"],
       "cFlatVIIdim in the key of C♭ Major returns the correct notes")
 
-    let cFlatVIIm7b5 = cFlatMajor.chord("VII", type: "m7♭5")! // needs better error handling when degree or type is invalid
+    let cFlatVIIm7b5 = cFlatMajor.chord("VII", type: "m7♭5")!
     XCTAssertEqual(cFlatVIIm7b5.names, ["B♭", "D♭", "F♭", "A♭"],
       "VIIm7b5 in the key of C♭ Major returns the correct notes")
 

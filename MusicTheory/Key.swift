@@ -46,7 +46,7 @@ public class Key: Comparable {
       ++root
     }
 
-    return Chord(root: root, type: type)
+    return root.chord(type)
   }
 }
 
