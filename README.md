@@ -23,7 +23,7 @@ let cFlatMinorScale = cFlat.scale("minor")
 cFlatMinorScale.names // ["C♭", "D♭", "E♭♭", "F♭", "G♭", "A♭♭", "B♭♭"]
 cFlatMinorScale.values // [59, 61, 62, 64, 66, 67, 69]
 
-let cFlatMinChord =  Chord(root: cFlat, type: "min") // or cFlat.chord("min")
+let cFlatMinChord = Chord(root: cFlat, type: "min") // or cFlat.chord("min")
 
 cFlatMinChord.names // ["C♭", "E♭♭", "G♭"]
 cFlatMinChord.values // [59, 62, 66]
