@@ -10,7 +10,7 @@ MusicTheory provides objects to work with musical keys, notes, scales and chords
 Put this in your Podfile:
 
 ```ruby
-pod "MusicTheory", "~> 0.2"
+pod "MusicTheory", "~> 0.3"
 ```
 
 ## Usage:

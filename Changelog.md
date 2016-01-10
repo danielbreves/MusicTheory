@@ -1,6 +1,8 @@
 # Changelog
 
 ## Master
+
+## v0.3.0
 - Reverted regex based parser
 - Removed STRegex dependency
 - Replaced b and # for ♭ and ♯
