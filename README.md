@@ -35,6 +35,8 @@ cFlatV7.name // "G♭7"
 cFlatV7.notes.map { $0.name } // ["G♭", "B♭", "D♭", "F♭"]
 ```
 
+For a list of all supported chord types see: [MusicTheory/Music.swift](https://github.com/danielbreves/MusicTheory/blob/master/MusicTheory/Music.swift)
+
 For more usage examples see: [MusicTheoryTests/MusicTheoryTests.swift](https://github.com/danielbreves/MusicTheory/blob/master/MusicTheoryTests/MusicTheoryTests.swift)
 
 ## Contributing
