@@ -12,6 +12,7 @@ public class Key: Comparable {
   public let note: Note
   public let quality: String
   public let name: String
+  private var chordCache = [String: Chord]()
 
   private(set) public lazy var scale: RootWithIntervals = {
     return self.note.scale(self.quality)
@@ -30,6 +31,12 @@ public class Key: Comparable {
   }
 
   public func chord(degree: String, type: String = "maj") -> Chord? {
+    let chordName = "\(degree)\(type)"
+    var chord = chordCache[chordName]
+    if (chord != nil) {
+      return chord
+    }
+
     var degreeSymbol = degree
     let flatOrSharp = degree.characters.first
 
@@ -46,7 +53,10 @@ public class Key: Comparable {
       ++root
     }
 
-    return root.chord(type)
+    chord = root.chord(type)
+    chordCache[chordName] = chord
+
+    return chord
   }
 }
 
