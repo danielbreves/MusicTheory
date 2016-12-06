@@ -8,14 +8,14 @@
 
 import Foundation
 
-public class Note: Comparable {
+open class Note: Comparable {
   var _name: String
 
-  public var name: String {
+  open var name: String {
     return _name
   }
 
-  public var octave: Int8 {
+  open var octave: Int8 {
     didSet {
       self._value = nil
     }
@@ -27,12 +27,12 @@ public class Note: Comparable {
 
   lazy var letterIndex: Int = {
     let letter = String(self.name.characters.first!)
-    return Music.Alphabet.indexOf(letter)!
+    return Music.Alphabet.index(of: letter)!
   }()
 
   var _value: Int8?
 
-  public var value: Int8 {
+  open var value: Int8 {
     if self._value != nil {
       return self._value!
     }
@@ -41,12 +41,12 @@ public class Note: Comparable {
     var noteValue = Music.Notes[keyLetter]!
 
     if self.name.characters.count > 1 {
-      let accident = self.name[self.name.endIndex.predecessor()]
+      let accident = self.name[self.name.characters.index(before: self.name.endIndex)]
 
       if accident == Music.SHARP {
-        noteValue++
+        noteValue += 1
       } else if accident == Music.FLAT {
-        noteValue--
+        noteValue -= 1
       }
     }
 
@@ -62,21 +62,21 @@ public class Note: Comparable {
     self.octave = octave
   }
 
-  private init(name: String, value: Int8, octave: Int8) {
+  fileprivate init(name: String, value: Int8, octave: Int8) {
     self._name = name
     self.octave = octave
     self._value = value
   }
 
-  public func scale(type: String) -> RootWithIntervals {
+  open func scale(_ type: String) -> RootWithIntervals {
     return RootWithIntervals(root: self, intervals: Music.Scales[type]!)
   }
 
-  public func chord(type: String) -> Chord {
+  open func chord(_ type: String) -> Chord {
     return Chord(root: self, type: type)
   }
 
-  public func add(intervalSymbol: String) -> Note {
+  open func add(_ intervalSymbol: String) -> Note {
     let interval = Music.Intervals[intervalSymbol]!
     let noteLetterValue = Music.Notes[self.letter]!
     let resultantLetterIndex = (self.letterIndex + Int(interval.degree)) % Music.Alphabet.count
@@ -87,12 +87,12 @@ public class Note: Comparable {
     var octave = self.octave
 
     if resultantLetterValue < noteLetterValue {
-      octave++
+      octave += 1
     }
 
     resultantLetterValue += (octave + 1) * 12
 
-    let accidentals = resultantLetterValue.distanceTo(resultantNoteValue)
+    let accidentals = resultantLetterValue.distance(to: resultantNoteValue)
 
     if accidentals != 0 {
       let accidentalSymbol = accidentals > 0 ? Music.SHARP : Music.FLAT
@@ -106,16 +106,16 @@ public class Note: Comparable {
     return Note(name: resultantNoteName, value: resultantNoteValue, octave: octave)
   }
 
-  public func copy() -> Note {
+  open func copy() -> Note {
     return Note(name: self.name, value: self.value, octave: self.octave)
   }
 }
 
-prefix public func ++(inout note: Note) -> Note {
+prefix public func ++(note: inout Note) -> Note {
   note._value = note._value! + 1
 
   if (note._name.characters.last == Music.FLAT) {
-    note._name.removeAtIndex(note._name.endIndex.predecessor())
+    note._name.remove(at: note._name.characters.index(before: note._name.endIndex))
   } else {
     note._name.append(Music.SHARP)
   }
@@ -123,11 +123,11 @@ prefix public func ++(inout note: Note) -> Note {
   return note
 }
 
-prefix public func --(inout note: Note) -> Note {
+prefix public func --(note: inout Note) -> Note {
   note._value = note._value! - 1
 
   if (note._name.characters.last == Music.SHARP) {
-    note._name.removeAtIndex(note._name.endIndex.predecessor())
+    note._name.remove(at: note._name.characters.index(before: note._name.endIndex))
   } else {
     note._name.append(Music.FLAT)
   }

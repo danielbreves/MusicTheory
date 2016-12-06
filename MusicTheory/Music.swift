@@ -24,7 +24,7 @@ public struct Music {
 
   public static let Degrees = ["I", "II", "III", "IV", "V", "VI", "VII"]
 
-  public static let Alphabet = Array(Notes.keys).sort()
+  public static let Alphabet = Array(Notes.keys).sorted()
 
   public typealias Interval = (degree: Int8, steps: Int8)
 

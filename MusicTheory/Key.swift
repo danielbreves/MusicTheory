@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class Key: Comparable {
-  public let note: Note
-  public let quality: String
-  public let name: String
-  private var chordCache = [String: Chord]()
+open class Key: Comparable {
+  open let note: Note
+  open let quality: String
+  open let name: String
+  fileprivate var chordCache = [String: Chord]()
 
-  private(set) public lazy var scale: RootWithIntervals = {
+  fileprivate(set) open lazy var scale: RootWithIntervals = {
     return self.note.scale(self.quality)
   }()
 
@@ -30,7 +30,7 @@ public class Key: Comparable {
     self.init(note: note, quality: quality)
   }
 
-  public func chord(degree: String, type: String = "maj") -> Chord? {
+  open func chord(_ degree: String, type: String = "maj") -> Chord? {
     let chordName = "\(degree)\(type)"
     var chord = chordCache[chordName]
     if (chord != nil) {
@@ -41,10 +41,10 @@ public class Key: Comparable {
     let flatOrSharp = degree.characters.first
 
     if (flatOrSharp == Music.FLAT || flatOrSharp == Music.SHARP) {
-      degreeSymbol.removeAtIndex(degreeSymbol.startIndex)
+      degreeSymbol.remove(at: degreeSymbol.startIndex)
     }
 
-    let scaleIndex = Music.Degrees.indexOf(degreeSymbol)
+    let scaleIndex = Music.Degrees.index(of: degreeSymbol)
     var root = self.scale.notes[scaleIndex!].copy()
 
     if (flatOrSharp == Music.FLAT) {

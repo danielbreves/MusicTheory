@@ -8,8 +8,8 @@
 
 import Foundation
 
-public class RootWithIntervals {
-  internal(set) public var notes: [Note]
+open class RootWithIntervals {
+  internal(set) open var notes: [Note]
 
   public init(root: Note, intervals: [String]) {
     var currentNote = root
@@ -27,25 +27,25 @@ public class RootWithIntervals {
     self.notes = notes
   }
 
-  private(set) public lazy var names: [String] = {
+  fileprivate(set) open lazy var names: [String] = {
     return self.notes.map {
-      (var note) -> String in
+      (note) -> String in
       return note.name
     }
   }()
 
-  private(set) public lazy var values: [Int8] = {
+  fileprivate(set) open lazy var values: [Int8] = {
     return self.notes.map {
-      (var note) -> Int8 in
+      (note) -> Int8 in
       return note.value
     }
   }()
 
-  public func root() -> Note {
+  open func root() -> Note {
     return notes[0]
   }
 
-  public func copy() -> RootWithIntervals {
+  open func copy() -> RootWithIntervals {
     let copiedNotes = notes.map { $0.copy() }
     return RootWithIntervals(notes: copiedNotes)
   }
