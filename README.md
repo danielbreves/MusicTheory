@@ -43,7 +43,7 @@ For more usage examples see: [MusicTheoryTests/MusicTheoryTests.swift](https://g
 
 Improvements are always welcome. Please follow these steps to contribute:
 
-1. Submit a Pull Request with a detailed explanation of changes
+1. Submit a Pull Request with a detailed explanation of changes and tests
 2. Receive a :+1: from a core team member
 3. Core team will merge your changes
 
