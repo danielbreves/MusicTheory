@@ -111,6 +111,7 @@ open class Note: Comparable {
   }
 }
 
+@discardableResult
 prefix public func ++(note: inout Note) -> Note {
   note._value = note._value! + 1
 
@@ -123,6 +124,7 @@ prefix public func ++(note: inout Note) -> Note {
   return note
 }
 
+@discardableResult
 prefix public func --(note: inout Note) -> Note {
   note._value = note._value! - 1
 
