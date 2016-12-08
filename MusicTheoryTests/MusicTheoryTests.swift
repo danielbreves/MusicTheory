@@ -70,6 +70,49 @@ class MusicTheoryTests: XCTestCase {
       "B♯ major scale returns correct values")
   }
 
+  func testModes() {
+    let c = Note(name: "C")
+    let cDorian = c.scale("dorian")
+
+    XCTAssertEqual(cDorian.names, ["C", "D", "E♭", "F", "G", "A", "B♭"],
+                   "C dorian scale returns correct names")
+
+    XCTAssertEqual(cDorian.values, [60, 62, 63, 65, 67, 69, 70],
+                   "C dorian scale returns correct values")
+
+    let cPhrygian = c.scale("phrygian")
+
+    XCTAssertEqual(cPhrygian.names, ["C", "D♭", "E♭", "F", "G", "A♭", "B♭"],
+                   "C phrygian scale returns correct names")
+
+    XCTAssertEqual(cPhrygian.values, [60, 61, 63, 65, 67, 68, 70],
+                   "C phrygian scale returns correct values")
+
+    let cLydian = c.scale("lydian")
+
+    XCTAssertEqual(cLydian.names, ["C", "D", "E", "F♯", "G", "A", "B"],
+                   "C lydian scale returns correct names")
+
+    XCTAssertEqual(cLydian.values, [60, 62, 64, 66, 67, 69, 71],
+                   "C lydian scale returns correct values")
+
+    let cMixolydian = c.scale("mixolydian")
+
+    XCTAssertEqual(cMixolydian.names, ["C", "D", "E", "F", "G", "A", "B♭"],
+                   "C mixolydian scale returns correct names")
+
+    XCTAssertEqual(cMixolydian.values, [60, 62, 64, 65, 67, 69, 70],
+                   "C mixolydian scale returns correct values")
+
+    let cLocrian = c.scale("locrian")
+
+    XCTAssertEqual(cLocrian.names, ["C", "D♭", "E♭", "F", "G♭", "A♭", "B♭"],
+                   "C locrian scale returns correct names")
+
+    XCTAssertEqual(cLocrian.values, [60, 61, 63, 65, 66, 68, 70],
+                   "C locrian scale returns correct values")
+  }
+
   func testChords() {
     let cFlat = Note(name: "C♭")
     let cFlatMin = cFlat.chord("min")
