@@ -8,32 +8,32 @@
 
 import Foundation
 
-public class Chord: RootWithIntervals {
-  public let name: String
+open class Chord: RootWithIntervals {
+  open let name: String
 
-  public var position: Int8 = 0 {
+  open var position: Int8 = 0 {
     didSet {
-      let steps = oldValue.distanceTo(position)
+      let steps = oldValue.distance(to: position)
 
       if steps > 0 {
         for _ in 0...steps - 1 {
-          let note = self.notes.removeAtIndex(0)
-          note.octave++
+          let note = self.notes.remove(at: 0)
+          note.octave += 1
           self.notes.append(note)
         }
       } else if steps < 0 {
         for _ in 0...abs(steps) - 1 {
           let note = self.notes.removeLast()
-          note.octave--
-          self.notes.insert(note, atIndex: 0)
+          note.octave -= 1
+          self.notes.insert(note, at: 0)
         }
       }
     }
   }
 
-  public var octave: Int8 {
+  open var octave: Int8 {
     didSet {
-      let diff = oldValue.distanceTo(octave)
+      let diff = oldValue.distance(to: octave)
       for note in notes {
         note.octave += diff
       }
@@ -47,31 +47,33 @@ public class Chord: RootWithIntervals {
     super.init(root: root, intervals: Music.Chords[type]!)
   }
 
-  private init(name: String, octave: Int8, position: Int8, notes: [Note]) {
+  fileprivate init(name: String, octave: Int8, position: Int8, notes: [Note]) {
     self.name = name
     self.octave = octave
     self.position = position
     super.init(notes: notes)
   }
 
-  public override func copy() -> Chord {
+  open override func copy() -> Chord {
     let copiedNotes = super.copy().notes
     return Chord(name: self.name, octave: self.octave, position: self.position, notes: copiedNotes)
   }
 }
 
-prefix public func ++(inout chord: Chord) -> Chord {
+prefix public func ++(chord: inout Chord) -> Chord {
   chord.notes = chord.notes.map {
-    (var note) -> Note in
+    (note) -> Note in
+    var note = note
     return ++note
   }
 
   return chord
 }
 
-prefix public func --(inout chord: Chord) -> Chord {
+prefix public func --(chord: inout Chord) -> Chord {
   chord.notes = chord.notes.map {
-    (var note) -> Note in
+    (note) -> Note in
+    var note = note
     return --note
   }
 
