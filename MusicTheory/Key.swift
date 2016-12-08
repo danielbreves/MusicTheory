@@ -8,9 +8,23 @@
 
 import Foundation
 
+/**
+  Represents a musical key with a note, a quality (e.g. major or minor) and a name (e.g. C minor).
+*/
 open class Key: Comparable {
+  /**
+    The key note.
+  */
   open let note: Note
+
+  /**
+    The quality of the key (e.g. minor).
+  */
   open let quality: String
+
+  /**
+    The name of the key (e.g. C minor).
+  */
   open let name: String
   fileprivate var chordCache = [String: Chord]()
 
@@ -18,6 +32,14 @@ open class Key: Comparable {
     return self.note.scale(self.quality)
   }()
 
+  /**
+    Initializes the key with a note and a quality.
+
+    @param note The key note.
+    @param note The quality of the key (e.g. major or minor).
+
+    @return The new Key instance.
+  */
   public init(note: Note, quality: String) {
     note.octave = 4
     self.note = note
@@ -25,11 +47,27 @@ open class Key: Comparable {
     self.name = "\(note.name) \(quality)"
   }
 
+  /**
+    Initializes the key with a name and a quality.
+
+    @param name The name of the key.
+    @param quality The quality of the key (e.g. major or minor).
+
+    @return The new Key instance.
+  */
   public convenience init(name: String, quality: String = "major") {
     let note = Note(name: name)
     self.init(note: note, quality: quality)
   }
 
+  /**
+    Generates a chord from a key degree and a type.
+
+    @param degree The degree of the chord to generate.
+    @param degree The type of chord to generate (e.g. maj).
+
+    @return a new chord.
+  */
   open func chord(_ degree: String, type: String = "maj") -> Chord? {
     let chordName = "\(degree)\(type)"
     var chord = chordCache[chordName]
@@ -60,6 +98,14 @@ open class Key: Comparable {
   }
 }
 
+/**
+  Checks if the first key note's value is less than the second.
+
+  @param lhs The first key to compare.
+  @param rhs The second key to compare.
+
+  @return a bool.
+*/
 public func <(lhs: Key, rhs: Key) -> Bool {
   let lhsNote = lhs.note
   let rhsNote = rhs.note
@@ -67,6 +113,14 @@ public func <(lhs: Key, rhs: Key) -> Bool {
   return rhsNote.value < lhsNote.value
 }
 
+/**
+  Checks if two keys have the same name.
+
+  @param lhs The first key to compare.
+  @param rhs The second key to compare.
+
+  @return a bool.
+*/
 public func ==(lhs: Key, rhs: Key) -> Bool {
   return lhs.name == rhs.name
 }

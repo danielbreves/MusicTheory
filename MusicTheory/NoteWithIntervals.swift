@@ -8,9 +8,20 @@
 
 import Foundation
 
+/**
+  A root note with intervals (or a scale).
+*/
 open class RootWithIntervals {
   internal(set) open var notes: [Note]
 
+  /**
+    Initializes the scale with a root note and intervals.
+
+    @param root The root note of the scale.
+    @param an array of interval symbols for the scale.
+
+    @return The new RootWithIntervals instance.
+  */
   public init(root: Note, intervals: [String]) {
     var currentNote = root
     var notes = [currentNote]
@@ -41,10 +52,20 @@ open class RootWithIntervals {
     }
   }()
 
+  /**
+    The root note.
+
+    @return the root note.
+  */
   open func root() -> Note {
     return notes[0]
   }
 
+  /**
+    Copies the scale.
+
+    @return the copy of the scale.
+  */
   open func copy() -> RootWithIntervals {
     let copiedNotes = notes.map { $0.copy() }
     return RootWithIntervals(notes: copiedNotes)

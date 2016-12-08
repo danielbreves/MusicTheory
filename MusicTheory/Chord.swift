@@ -8,9 +8,18 @@
 
 import Foundation
 
+/**
+  A subclass of `RootWithIntervals` with a name (e.g. G maj). It supports changing octaves and position.
+*/
 open class Chord: RootWithIntervals {
+  /**
+    The name of the chord.
+  */
   open let name: String
 
+  /**
+    The current position or inversion of the chord.
+  */
   open var position: Int8 = 0 {
     didSet {
       let steps = oldValue.distance(to: position)
@@ -31,6 +40,9 @@ open class Chord: RootWithIntervals {
     }
   }
 
+  /**
+    The current octave of the chord.
+  */
   open var octave: Int8 {
     didSet {
       let diff = oldValue.distance(to: octave)
@@ -40,6 +52,14 @@ open class Chord: RootWithIntervals {
     }
   }
 
+  /**
+    Initializes the chord with a root note and a type.
+
+    @param root The root note.
+    @param type The type of chord (e.g. maj).
+
+    @return The new Chord instance.
+  */
   public init(root: Note, type: String) {
     let chordTypeName = type == "maj" || type == "M" ? "" : type
     self.name = "\(root.name)\(chordTypeName)"
@@ -54,12 +74,24 @@ open class Chord: RootWithIntervals {
     super.init(notes: notes)
   }
 
+  /**
+    Copies the chord.
+
+    @return the copy of the chord.
+  */
   open override func copy() -> Chord {
     let copiedNotes = super.copy().notes
     return Chord(name: self.name, octave: self.octave, position: self.position, notes: copiedNotes)
   }
 }
 
+/**
+  Moves each note of the chord up one semitone.
+
+  @param chord The chord to move up.
+
+  @return the chord object.
+*/
 prefix public func ++(chord: inout Chord) -> Chord {
   chord.notes = chord.notes.map {
     (note) -> Note in
@@ -70,6 +102,13 @@ prefix public func ++(chord: inout Chord) -> Chord {
   return chord
 }
 
+/**
+  Moves each note of the chord down one semitone.
+
+  @param chord The chord to move down.
+
+  @return the chord object.
+*/
 prefix public func --(chord: inout Chord) -> Chord {
   chord.notes = chord.notes.map {
     (note) -> Note in
