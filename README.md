@@ -1,5 +1,5 @@
 # MusicTheory
-A music theory library for Swift OS X and iOS apps. 
+A music theory library for Swift OS X and iOS apps.
 
 MusicTheory provides objects to work with musical keys, notes, scales and chords. It can be used to generate a scale from a key or note symbol, or a chord from a key and a chord degree for example. You can also use it to translate a sequence of notes to a sequence of MIDI values.
 
@@ -10,7 +10,7 @@ MusicTheory provides objects to work with musical keys, notes, scales and chords
 Put this in your Podfile:
 
 ```ruby
-pod "MusicTheory", "~> 0.3"
+pod "MusicTheory", "~> 0.4"
 ```
 
 ## Usage:

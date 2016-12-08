@@ -2,6 +2,10 @@
 
 ## Master
 
+## v0.4.0
+- Converted to Swift 3.0
+- Added scale modes
+
 ## v0.3.0
 - Reverted regex based parser
 - Removed STRegex dependency
@@ -16,4 +20,3 @@
 - Added intervals d5, A5, d7, A7
 - Changed interval addition for notes to be based from root, rather than previous note
 - Added more chord types
-
