@@ -49,12 +49,7 @@ public struct Music {
 
   public static let Scales = [
     "major": ["M2", "M3", "P4", "P5", "M6", "M7"],
-    "minor": ["M2", "m3", "P4", "P5", "m6", "m7"],
-    "dorian": ["M2", "m3", "P4", "P5", "M6", "m7"],
-    "phrygian": ["m2", "m3", "P4", "P5", "m6", "m7"],
-    "lydian": ["M2", "M3", "A4", "P5", "M6", "M7"],
-    "mixolydian": ["M2", "M3", "P4", "P5", "M6", "m7"],
-    "locrian": ["m2", "m3", "P4", "d5", "m6", "m7"]
+    "minor": ["M2", "m3", "P4", "P5", "m6", "m7"]
   ]
 
   public static let Chords: [String: [String]] = {
