@@ -12,7 +12,7 @@ DESC
   s.social_media_url = "http://twitter.com/danielbreves"
 
   s.source       = { :git => "https://github.com/danielbreves/MusicTheory.git", :tag => "v#{s.version.to_s}" }
-  s.source_files = "MusicTheory/**/*.swift"
+  s.source_files = "Sources/**/*.swift"
   s.module_name  = "MusicTheory"
 
   s.ios.deployment_target     = "8.0"
