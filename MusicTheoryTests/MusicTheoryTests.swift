@@ -8,7 +8,7 @@
 
 import Cocoa
 import XCTest
-import MusicTheory
+@testable import MusicTheory
 
 class MusicTheoryTests: XCTestCase {
 
