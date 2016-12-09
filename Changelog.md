@@ -2,18 +2,22 @@
 
 ## Master
 
-## v0.4.0
+## v1.0.x
+- Added support for Swift Package Manager
+
+## v0.4.x
 - Converted to Swift 3.0
 - Added scale modes
+- Added docs
 
-## v0.3.0
+## v0.3.x
 - Reverted regex based parser
 - Removed STRegex dependency
 - Replaced b and # for ♭ and ♯
 - Changed Key.chord method to accept a degree and type
 - Added support for flat and sharp degrees
 
-## v0.2.0
+## v0.2.x
 - Added podspec
 - Added regex based parser for chords
 - Added STRegex dependency
