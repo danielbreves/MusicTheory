@@ -55,10 +55,10 @@ open class Chord: RootWithIntervals {
   /**
     Initializes the chord with a root note and a type.
 
-    @param root The root note.
-    @param type The type of chord (e.g. maj).
+    - parameter root:The root note.
+    - parameter type:The type of chord (e.g. maj).
 
-    @return The new Chord instance.
+    - returns: The new Chord instance.
   */
   public init(root: Note, type: String) {
     let chordTypeName = type == "maj" || type == "M" ? "" : type
@@ -77,7 +77,7 @@ open class Chord: RootWithIntervals {
   /**
     Copies the chord.
 
-    @return the copy of the chord.
+    - returns: the copy of the chord.
   */
   open override func copy() -> Chord {
     let copiedNotes = super.copy().notes
@@ -88,9 +88,9 @@ open class Chord: RootWithIntervals {
 /**
   Moves each note of the chord up one semitone.
 
-  @param chord The chord to move up.
+  - parameter chord:The chord to move up.
 
-  @return the chord object.
+  - returns: the chord object.
 */
 prefix public func ++(chord: inout Chord) -> Chord {
   chord.notes = chord.notes.map {
@@ -105,9 +105,9 @@ prefix public func ++(chord: inout Chord) -> Chord {
 /**
   Moves each note of the chord down one semitone.
 
-  @param chord The chord to move down.
+  - parameter chord:The chord to move down.
 
-  @return the chord object.
+  - returns: the chord object.
 */
 prefix public func --(chord: inout Chord) -> Chord {
   chord.notes = chord.notes.map {

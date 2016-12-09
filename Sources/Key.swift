@@ -35,10 +35,10 @@ open class Key: Comparable {
   /**
     Initializes the key with a note and a quality.
 
-    @param note The key note.
-    @param note The quality of the key (e.g. major or minor).
+    - parameter note:The key note.
+    - parameter note:The quality of the key (e.g. major or minor).
 
-    @return The new Key instance.
+    - returns: The new Key instance.
   */
   public init(note: Note, quality: String) {
     note.octave = 4
@@ -50,10 +50,10 @@ open class Key: Comparable {
   /**
     Initializes the key with a name and a quality.
 
-    @param name The name of the key.
-    @param quality The quality of the key (e.g. major or minor).
+    - parameter name:The name of the key.
+    - parameter quality:The quality of the key (e.g. major or minor).
 
-    @return The new Key instance.
+    - returns: The new Key instance.
   */
   public convenience init(name: String, quality: String = "major") {
     let note = Note(name: name)
@@ -63,10 +63,10 @@ open class Key: Comparable {
   /**
     Generates a chord from a key degree and a type.
 
-    @param degree The degree of the chord to generate.
-    @param degree The type of chord to generate (e.g. maj).
+    - parameter degree:The degree of the chord to generate.
+    - parameter degree:The type of chord to generate (e.g. maj).
 
-    @return a new chord.
+    - returns: a new chord.
   */
   open func chord(_ degree: String, type: String = "maj") -> Chord? {
     let chordName = "\(degree)\(type)"
@@ -101,10 +101,10 @@ open class Key: Comparable {
 /**
   Checks if the first key note's value is less than the second.
 
-  @param lhs The first key to compare.
-  @param rhs The second key to compare.
+  - parameter lhs:The first key to compare.
+  - parameter rhs:The second key to compare.
 
-  @return a bool.
+  - returns: a bool.
 */
 public func <(lhs: Key, rhs: Key) -> Bool {
   let lhsNote = lhs.note
@@ -116,10 +116,10 @@ public func <(lhs: Key, rhs: Key) -> Bool {
 /**
   Checks if two keys have the same name.
 
-  @param lhs The first key to compare.
-  @param rhs The second key to compare.
+  - parameter lhs:The first key to compare.
+  - parameter rhs:The second key to compare.
 
-  @return a bool.
+  - returns: a bool.
 */
 public func ==(lhs: Key, rhs: Key) -> Bool {
   return lhs.name == rhs.name

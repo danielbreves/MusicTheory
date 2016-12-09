@@ -72,10 +72,10 @@ open class Note: Comparable {
   /**
     Initializes the note with a name and octave.
 
-    @param name The name of the note.
-    @param octave The initial octave of the note.
+    - parameter name:The name of the note.
+    - parameter octave:The initial octave of the note.
 
-    @return The new Note instance.
+    - returns: The new Note instance.
   */
   public init(name: String, octave: Int8 = 4) {
     self._name = name
@@ -91,9 +91,9 @@ open class Note: Comparable {
   /**
     Generates a scale from a type, with the note as root.
 
-    @param type The type of scale to generate.
+    - parameter type:The type of scale to generate.
 
-    @return a RootWithIntervals.
+    - returns: a RootWithIntervals.
   */
   open func scale(_ type: String) -> RootWithIntervals {
     return RootWithIntervals(root: self, intervals: Music.Scales[type]!)
@@ -102,9 +102,9 @@ open class Note: Comparable {
   /**
     Generates a chord from a type, with the note as root.
 
-    @param type The type of chord to generate.
+    - parameter type:The type of chord to generate.
 
-    @return a Chord.
+    - returns: a Chord.
   */
   open func chord(_ type: String) -> Chord {
     return Chord(root: self, type: type)
@@ -113,9 +113,9 @@ open class Note: Comparable {
   /**
     Generate a new note after adding the passed interval.
 
-    @param intervalSymbol The symbol of the interval to add to the note (e.g. m2).
+    - parameter intervalSymbol:The symbol of the interval to add to the note (e.g. m2).
 
-    @return a new Note.
+    - returns: a new Note.
   */
   open func add(_ intervalSymbol: String) -> Note {
     let interval = Music.Intervals[intervalSymbol]!
@@ -150,7 +150,7 @@ open class Note: Comparable {
   /**
     Copies the note.
 
-    @return the copy of the note.
+    - returns: the copy of the note.
   */
   open func copy() -> Note {
     return Note(name: self.name, value: self.value, octave: self.octave)
@@ -160,9 +160,9 @@ open class Note: Comparable {
 /**
   Moves the note up one semitone.
 
-  @param note The note to move up.
+  - parameter note:The note to move up.
 
-  @return the note object.
+  - returns: the note object.
 */
 @discardableResult
 prefix public func ++(note: inout Note) -> Note {
@@ -180,9 +180,9 @@ prefix public func ++(note: inout Note) -> Note {
 /**
   Moves the note down one semitone.
 
-  @param note The note to move down.
+  - parameter note:The note to move down.
 
-  @return the note object.
+  - returns: the note object.
 */
 @discardableResult
 prefix public func --(note: inout Note) -> Note {
@@ -200,10 +200,10 @@ prefix public func --(note: inout Note) -> Note {
 /**
   Checks if the first note's value is less than the second.
 
-  @param lhs The first note to compare.
-  @param rhs The second note to compare.
+  - parameter lhs:The first note to compare.
+  - parameter rhs:The second note to compare.
 
-  @return a bool.
+  - returns: a bool.
 */
 public func <(lhs: Note, rhs: Note) -> Bool {
   return lhs.value < rhs.value
@@ -212,10 +212,10 @@ public func <(lhs: Note, rhs: Note) -> Bool {
 /**
   Checks if two notes are equal in value.
 
-  @param lhs The first note to compare.
-  @param rhs The second note to compare.
+  - parameter lhs:The first note to compare.
+  - parameter rhs:The second note to compare.
 
-  @return a bool.
+  - returns: a bool.
 */
 public func ==(lhs: Note, rhs: Note) -> Bool {
   return lhs.value == rhs.value

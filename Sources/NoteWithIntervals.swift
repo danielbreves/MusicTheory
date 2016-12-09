@@ -17,10 +17,10 @@ open class RootWithIntervals {
   /**
     Initializes the scale with a root note and intervals.
 
-    @param root The root note of the scale.
-    @param an array of interval symbols for the scale.
+    - parameter root:The root note of the scale.
+    - parameter intervals:an array of interval symbols for the scale.
 
-    @return The new RootWithIntervals instance.
+    - returns: The new RootWithIntervals instance.
   */
   public init(root: Note, intervals: [String]) {
     var currentNote = root
@@ -55,7 +55,7 @@ open class RootWithIntervals {
   /**
     The root note.
 
-    @return the root note.
+    - returns: the root note.
   */
   open func root() -> Note {
     return notes[0]
@@ -64,7 +64,7 @@ open class RootWithIntervals {
   /**
     Copies the scale.
 
-    @return the copy of the scale.
+    - returns: the copy of the scale.
   */
   open func copy() -> RootWithIntervals {
     let copiedNotes = notes.map { $0.copy() }
