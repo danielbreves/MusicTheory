@@ -1,7 +1,5 @@
 # Changelog
 
-## Master
-
 ## v1.0.x
 - Added support for Swift Package Manager
 
