@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
 DESC
 
   s.homepage         = "https://github.com/danielbreves/MusicTheory"
-  s.license          = "LICENSE"
+  s.license          = { :type => 'MIT' }
   s.author           = { "Daniel Breves" => "djbreves@gmail.com" }
   s.social_media_url = "http://twitter.com/danielbreves"
 
