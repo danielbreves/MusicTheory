@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.1.x
+- Converted to Swift 4.0
+
 ## v1.0.x
 - Added support for Swift Package Manager
 
