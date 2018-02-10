@@ -45,7 +45,7 @@ open class Chord: RootWithIntervals {
   */
   open var octave: Int8 {
     didSet {
-      let diff = oldValue.distance(to: octave)
+      let diff = Int8(oldValue.distance(to: octave))
       for note in notes {
         note.octave += diff
       }

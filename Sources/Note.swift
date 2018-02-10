@@ -31,11 +31,11 @@ open class Note: Comparable {
   }
 
   lazy var letter: String = {
-    return String(self.name.characters.first!)
+    return String(self.name[self.name.startIndex])
   }()
 
   lazy var letterIndex: Int = {
-    let letter = String(self.name.characters.first!)
+    let letter = String(self.name[self.name.startIndex])
     return Music.Alphabet.index(of: letter)!
   }()
 
@@ -49,11 +49,11 @@ open class Note: Comparable {
       return self._value!
     }
 
-    let keyLetter = String(self.name.characters.first!)
+    let keyLetter = String(self.name[self.name.startIndex])
     var noteValue = Music.Notes[keyLetter]!
 
-    if self.name.characters.count > 1 {
-      let accident = self.name[self.name.characters.index(before: self.name.endIndex)]
+    if self.name.count > 1 {
+      let accident = self.name.last!
 
       if accident == Music.SHARP {
         noteValue += 1
@@ -168,8 +168,8 @@ open class Note: Comparable {
 prefix public func ++(note: inout Note) -> Note {
   note._value = note._value! + 1
 
-  if (note._name.characters.last == Music.FLAT) {
-    note._name.remove(at: note._name.characters.index(before: note._name.endIndex))
+  if (note._name.last! == Music.FLAT) {
+    note._name.removeLast()
   } else {
     note._name.append(Music.SHARP)
   }
@@ -188,8 +188,8 @@ prefix public func ++(note: inout Note) -> Note {
 prefix public func --(note: inout Note) -> Note {
   note._value = note._value! - 1
 
-  if (note._name.characters.last == Music.SHARP) {
-    note._name.remove(at: note._name.characters.index(before: note._name.endIndex))
+  if (note._name.last! == Music.SHARP) {
+    note._name.removeLast()
   } else {
     note._name.append(Music.FLAT)
   }

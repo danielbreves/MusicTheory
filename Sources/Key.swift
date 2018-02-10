@@ -76,7 +76,7 @@ open class Key: Comparable {
     }
 
     var degreeSymbol = degree
-    let flatOrSharp = degree.characters.first
+    let flatOrSharp = degree[degree.startIndex]
 
     if (flatOrSharp == Music.FLAT || flatOrSharp == Music.SHARP) {
       degreeSymbol.remove(at: degreeSymbol.startIndex)
