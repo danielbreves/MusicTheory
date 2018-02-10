@@ -121,7 +121,7 @@ public struct Music {
     A dictionary representing the circle of fifths, both major and minor.
   */
   public static let CircleOfFifths = [
-    "major": ["C", "G", "D", "A", "E", "B", "F♯", "C♯", "F", "B♭", "E♭", "A♭", "D♭", "G♭", "C♭"],
-    "minor": ["A", "E", "B", "F♯", "C♯", "G♯", "D♯", "A♯", "D", "G", "C", "F", "B♭", "E♭", "A♭"]
+    "major": ["C", "G", "D", "A", "E", "B", "F♯", "C♯", "A♭", "E♭", "B♭", "F"],
+    "minor": ["A", "E", "B", "F♯", "C♯", "G♯", "D♯", "A♯", "F", "C", "G", "D"]
   ]
 }
